@@ -26,8 +26,10 @@ class Main {
     SimpMessagingTemplate template
 
     @MessageMapping("/hello")
-    void message(Message message) {
-        println message.content
+    @SendTo("/user/topic/greetings")
+    Message message(Message message) {
+        println(message.content)
+        message
     }
 }
 
